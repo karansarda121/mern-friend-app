@@ -6,9 +6,12 @@ const register = async (req, res) => {
   try {
     const { username, password,interests } = req.body;
     const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ message: "User already exists" });
+      if (existingUser) return res.status(400).json({ message: "User already exists" });
+      const salt = await bcrypt.genSalt(10);  // Generate a salt with 10 rounds
+     const hashedPassword = await bcrypt.hash(password, salt);  // 10 is the salt rounds
 
-    const newUser = new User({ username, password, interests: interests || [] });
+
+    const newUser = new User({ username, password:hashedPassword, interests: interests || [] });
     await newUser.save();
 
     res.status(201).json({ message: "User registered successfully" });

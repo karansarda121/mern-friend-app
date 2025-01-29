@@ -67,6 +67,8 @@ const getPendingRequests = async (req, res) => {
   }
 };
 
+
+//getrecommendation
 const getRecommendations = async (req, res) => {
   try {
     // Fetch the logged-in user and their friends
@@ -120,15 +122,27 @@ const getRecommendations = async (req, res) => {
 };
 
 
+
 // Get Initial Users
 const getInitialUsers = async (req, res) => {
   try {
-    const users = await User.find({ _id: { $ne: req.user.id } }).select("username");
+    // Fetch the logged-in user and their friends
+    const user = await User.findById(req.user.id).select("friends");
+    const friends = user.friends.map((friendId) => friendId.toString());
+
+    // Fetch all users excluding the logged-in user and their friends
+    const users = await User.find({
+      _id: { $ne: req.user.id, $nin: friends }, // Exclude logged-in user and friends
+    }).select("_id username"); // Select only necessary fields
+
     res.status(200).json(users);
   } catch (error) {
+    console.error("Error fetching initial users:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
 
 // Accept/Reject Friend Requests
 const manageRequest = async (req, res) => {
