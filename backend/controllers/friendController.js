@@ -133,7 +133,7 @@ const getInitialUsers = async (req, res) => {
     // Fetch all users excluding the logged-in user and their friends
     const users = await User.find({
       _id: { $ne: req.user.id, $nin: friends }, // Exclude logged-in user and friends
-    }).select("_id username"); // Select only necessary fields
+    }).select("_id username interests"); // Select only necessary fields
 
     res.status(200).json(users);
   } catch (error) {
