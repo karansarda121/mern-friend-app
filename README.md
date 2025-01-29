@@ -29,6 +29,12 @@ npm install
 node server.js or nodemon server.js
 
 ### frontend
-npm install
+npm install 
+
+Note: in Frontend in api.js there is deployed backend link if you want to use it you can replace it with your backend link inset this http://localhost:3000 instead of https://mern-friend-app-fkfg.onrender.com.
+
 npm start
 Open http://localhost:3000 in your browser to view the project.
+
+Backend:  https://mern-friend-app-fkfg.onrender.com
+Frontend:  https://mern-friend-app.vercel.app/

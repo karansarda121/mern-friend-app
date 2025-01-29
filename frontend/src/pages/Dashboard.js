@@ -1,163 +1,3 @@
-// import React, { useState } from "react";
-// import { Grid, Container, Paper, Typography, Box, Dialog, DialogActions, DialogContent, DialogTitle, Button, CircularProgress } from "@mui/material";
-// import SearchBar from "../components/SearchBar";
-// import FriendRequests from "../components/FriendRequests";
-// import FriendsList from "../components/FriendsList";
-// import FriendRecommendations from "../components/FriendRecommendations";
-// import API from "../api"; // Your API utility for backend communication
-// import InitialUsers from "../components/InitialUsers"; // Import InitialUsers component
-
-// const Dashboard = () => {
-//   const [searchResults, setSearchResults] = useState([]);
-//   const [selectedUser, setSelectedUser] = useState(null); // Store selected user details
-//   const [openModal, setOpenModal] = useState(false); // Control modal visibility
-//     const [loading, setLoading] = useState(false); // Handle loading state for sending request
-//     const [list, setlist] = useState([]); // Store friend requests
-
-//   // Open Modal function
-//   const handleOpenModal = (user) => {
-//     setSelectedUser(user); // Set selected user data
-//     setOpenModal(true); // Open the modal
-//   };
-
-//   // Close Modal function
-//   const handleCloseModal = () => {
-//     setSelectedUser(null); // Clear selected user data
-//     setOpenModal(false); // Close modal
-//   };
-
-//   // Send Friend Request function
-//   const handleSendFriendRequest = async () => {
-//     if (!selectedUser) return;
-
-//     setLoading(true); // Start loading
-//     try {
-//       const res = await API.post("api/friends/send-request", { receiverId: selectedUser._id }); // Replace with your API endpoint
-//       console.log(res.data); // Handle success (e.g., show success message)
-//       setLoading(false); // Stop loading
-//       handleCloseModal(); // Close the modal after sending request
-//     } catch (err) {
-//       setLoading(false); // Stop loading if there's an error
-//       console.error("Error sending friend request:", err.response?.data?.message || err.message);
-//     }
-//   };
-
-//   return (
-//     <Container maxWidth="lg" sx={{ paddingTop: 5 }}>
-//       <Typography variant="h3" gutterBottom>
-//         Dashboard
-//       </Typography>
-
-//       <Grid container spacing={4}>
-//         {/* Search Bar Section */}
-//         <Grid item xs={12} md={6}>
-//           <Paper elevation={3} sx={{ padding: 2 }}>
-//             <Typography variant="h6" gutterBottom>
-//               Search Users
-//             </Typography>
-//             <SearchBar setResults={setSearchResults} />
-//           </Paper>
-//               </Grid>
-//                {/* Search Results Section */}
-//         <Grid item xs={12}>
-//           <Paper elevation={3} sx={{ padding: 2 }}>
-//             <Typography variant="h6" gutterBottom>
-//               Search Results
-//             </Typography>
-//             <Box>
-//               {searchResults.length ? (
-//                 <ul>
-//                   {searchResults.map((result) => (
-//                     <li key={result._id}>
-//                       <Button variant="outlined" onClick={() => handleOpenModal(result)}>
-//                         {result.username}
-//                       </Button>
-//                     </li>
-//                   ))}
-//                 </ul>
-//               ) : (
-//                 <Typography variant="body2">No results found</Typography>
-//               )}
-//             </Box>
-//           </Paper>
-//         </Grid>
-//       </Grid>
-
-
-//                {/* Initial Users Section */}
-//         <Grid item xs={12}>
-//           <InitialUsers setlist={setlist} />
-//         </Grid>
-              
-
-//         {/* Friend Requests Section */}
-//         <Grid item xs={12} md={6}>
-//           <Paper elevation={3} sx={{ padding: 2 }}>
-//             <Typography variant="h6" gutterBottom>
-//               Friend Requests
-//             </Typography>
-//             <FriendRequests />
-//           </Paper>
-//         </Grid>
-
-//         {/* Friends List Section */}
-//         <Grid item xs={12} md={6}>
-//           <Paper elevation={3} sx={{ padding: 2 }}>
-//             <Typography variant="h6" gutterBottom>
-//               Your Friends
-//             </Typography>
-//             <FriendsList />
-//           </Paper>
-//         </Grid>
-
-//         {/* Friend Recommendations Section */}
-//         <Grid item xs={12} md={6}>
-//           <Paper elevation={3} sx={{ padding: 2 }}>
-//             <Typography variant="h6" gutterBottom>
-//               Friend Recommendations
-//             </Typography>
-//             <FriendRecommendations />
-//           </Paper>
-//         </Grid>
-
-       
-//       {/* Modal to Show User Info */}
-//       <Dialog open={openModal} onClose={handleCloseModal}>
-//         <DialogTitle>Send Friend Request</DialogTitle>
-//         <DialogContent>
-//           {/* Display User Info */}
-//           <Typography variant="h6" gutterBottom>
-//             {selectedUser?.username}
-//           </Typography>
-//           <Typography variant="body1" gutterBottom>
-//             {/* Display any additional user details */}
-//             {selectedUser?.bio || "No bio available"}
-//           </Typography>
-
-//           {/* Send Friend Request Button */}
-//           <Button
-//             variant="contained"
-//             color="primary"
-//             onClick={handleSendFriendRequest}
-//             disabled={loading} // Disable while loading
-//             sx={{ marginTop: 2 }}
-//           >
-//             {loading ? "Sending..." : "Send Friend Request"}
-//           </Button>
-//         </DialogContent>
-//         <DialogActions>
-//           <Button onClick={handleCloseModal} color="primary">
-//             Close
-//           </Button>
-//         </DialogActions>
-//       </Dialog>
-//     </Container>
-//   );
-// };
-
-// export default Dashboard;
-
-
 
 import React, { useState } from "react";
 import {
@@ -178,15 +18,15 @@ import SearchBar from "../components/SearchBar";
 import FriendRequests from "../components/FriendRequests";
 import FriendsList from "../components/FriendsList";
 import FriendRecommendations from "../components/FriendRecommendations";
-import API from "../api"; // Your API utility for backend communication
-import InitialUsers from "../components/InitialUsers"; // Import InitialUsers component
+import API from "../api"; 
+import InitialUsers from "../components/InitialUsers"; 
 
 const Dashboard = () => {
   const [searchResults, setSearchResults] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null); // Store selected user details
-  const [openModal, setOpenModal] = useState(false); // Control modal visibility
-  const [loading, setLoading] = useState(false); // Handle loading state for sending request
-  const [list, setList] = useState([]); // Store friend requests
+  const [selectedUser, setSelectedUser] = useState(null); 
+  const [openModal, setOpenModal] = useState(false); 
+  const [loading, setLoading] = useState(false); 
+  const [list, setList] = useState([]); 
 
   // States to control visibility of sections
   const [showInitialUsers, setShowInitialUsers] = useState(false);
